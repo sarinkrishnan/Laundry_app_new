@@ -75,7 +75,7 @@ class RegisterPage extends StatelessWidget {
               Gap(15.h),
               Center(
                 child: SizedBox(
-                    height: 64.h,
+                    height: 63.h,
                     width: 333.w,
                     child: ElevatedButton(
                       onPressed: () {
@@ -119,8 +119,8 @@ class RegisterPage extends StatelessWidget {
                       '  Log In',
                       style: TextStyle(
                           decoration: TextDecoration.underline,
-                          fontFamily: 'DM_Sans',
-                          fontSize: 16.sp,
+                          fontFamily: 'DM_Sans', 
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.w700,
                           color: Color(0xffFFFFFF)),
                     ),
