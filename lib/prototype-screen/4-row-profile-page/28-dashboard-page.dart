@@ -63,7 +63,7 @@ class DashboardPage extends StatelessWidget {
                 Row(
                   children: [
                     DashboardContainer(
-                      image: 'asset/images/fi_10466386.png',
+                      image: 'asset/images/056-celender.png',
                       text1: 'Total bookings',
                       text2: '21',
                       text5: "",
@@ -72,7 +72,8 @@ class DashboardPage extends StatelessWidget {
                     ),
                     Gap(7.w),
                     DashboardContainer(
-                      image: 'asset/images/fi_9715468.png',
+                       
+                      image: 'asset/images/054-blue_star.png',
                       text1: 'Your Reviews',
                       text2: '21',
                       text3: '5 last month',
@@ -82,7 +83,7 @@ class DashboardPage extends StatelessWidget {
                 ),
                 Gap(7.h),
                 DashboardContainer(
-                    image: 'asset/images/fi_879859.png',
+                    image: 'asset/images/057-percentage.png',
                     text3: 'Than last month',
                     text1: 'Your Reviews',
                     text4: '13 %',
@@ -115,7 +116,7 @@ class Jan_mar_Celender extends StatelessWidget {
         children: [
           Gap(9.w),
           Image.asset(
-            'asset/images/calendar.png',
+            'asset/images/053-calendar.png',
             height: 20.h,
             width: 20.w,
           ),

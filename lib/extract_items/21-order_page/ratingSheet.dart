@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:laundry_bin_app/prototype-screen/3-row-calender-page/21-order-page.dart';
 import 'package:laundry_bin_app/prototype-screen/3-row-calender-page/23-id_152589-page.dart';
+import 'package:laundry_bin_app/prototype-screen/4-row-profile-page/33-my_reviews-page.dart';
 
 Future<dynamic> ratingSheet(BuildContext context) {
   return showModalBottomSheet(
@@ -103,7 +104,7 @@ Future<dynamic> ratingSheet(BuildContext context) {
                 width: 333.w,
                 height: 64.h,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {Navigator.push(context,MaterialPageRoute(builder: (context) => MyreviewPage(),));},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xff1FACF3),
                     ),

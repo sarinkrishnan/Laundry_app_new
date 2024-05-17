@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:laundry_bin_app/prototype-screen/4-row-profile-page/28-dashboard-page.dart';
@@ -22,9 +23,18 @@ class MyreviewPage extends StatelessWidget {
               padding: EdgeInsets.only(top: 37.h, left: 24.w),
               child: Row(
                 children: [
-                  Icon(
-                    Icons.keyboard_backspace_sharp,
-                    size: 30.sp,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DashboardPage(),
+                          ));
+                    },
+                    child: Icon(
+                      Icons.keyboard_backspace_sharp,
+                      size: 30.sp,
+                    ),
                   ),
                   Gap(80.w),
                   Text(
@@ -91,27 +101,27 @@ class My_review_Container extends StatelessWidget {
                 Row(
                   children: [
                     Image.asset(
-                      'asset/images/fi_1828884 (1).png',
+                      'asset/images/062-yellow_star.png',
                       height: 18.h,
                       width: 18.w,
                     ),
                     Image.asset(
-                      'asset/images/fi_1828884 (1).png',
+                      'asset/images/062-yellow_star.png',
                       height: 18.h,
                       width: 18.w,
                     ),
                     Image.asset(
-                      'asset/images/fi_1828884 (1).png',
+                      'asset/images/062-yellow_star.png',
                       height: 18.h,
                       width: 18.w,
                     ),
                     Image.asset(
-                      'asset/images/fi_1828884 (1).png',
+                      'asset/images/062-yellow_star.png',
                       height: 18.h,
                       width: 18.w,
                     ),
                     Image.asset(
-                      'asset/images/fi_1828884 (1).png',
+                      'asset/images/062-yellow_star.png',
                       height: 18.h,
                       width: 18.w,
                     ),
