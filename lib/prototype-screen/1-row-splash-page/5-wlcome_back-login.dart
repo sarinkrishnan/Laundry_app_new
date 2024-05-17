@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:laundry_bin_app/extract_items/splashpage-back_white_button/splash-back_white_button.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/3-login_&_register.dart';
+import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/4-register-page.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/6-sent-otp.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/7-forget-password.dart';
 
@@ -32,7 +34,7 @@ class WelcomebackLogin extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             // Gap(50.h),
+              // Gap(50.h),
               GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -129,8 +131,9 @@ class WelcomebackLogin extends StatelessWidget {
                       ));
                 },
                 child: Padding(
-                  padding:  EdgeInsets.only(right: 24.w,top: 15.h),
-                  child: Row(mainAxisAlignment: MainAxisAlignment.end,
+                  padding: EdgeInsets.only(right: 24.w, top: 15.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
                         'Forgot Password?',
@@ -145,28 +148,37 @@ class WelcomebackLogin extends StatelessWidget {
                 ),
               ),
               Gap(45.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Don’t have an account?',
-                    style: TextStyle(
-                        fontFamily: 'DM_Sans',
-                        color: Color(0xffFFFFFF),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16.sp),
-                  ),
-                  Text(
-                    ' Register Now',
-                    style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        decorationThickness: 2,
-                        fontFamily: 'DM_Sans',
-                        color: Color(0xffFFFFFF),
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16.sp),
-                  ),
-                ],
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RegisterPage(),
+                      ));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Don’t have an account?',
+                      style: TextStyle(
+                          fontFamily: 'DM_Sans',
+                          color: Color(0xffFFFFFF),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16.sp),
+                    ),
+                    Text(
+                      ' Register Now',
+                      style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          decorationThickness: 2,
+                          fontFamily: 'DM_Sans',
+                          color: Color(0xffFFFFFF),
+                          fontWeight: FontWeight.w700,
+                          fontSize: 16.sp),
+                    ),
+                  ],
+                ),
               )
             ],
           ),
