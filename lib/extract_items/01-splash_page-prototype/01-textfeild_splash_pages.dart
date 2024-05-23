@@ -1,22 +1,25 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextfeildText extends StatelessWidget {
   const TextfeildText({
     super.key,
-    required this.text, required this.controler,
+    required this.text,
+    required this.controler,
   });
   final String text;
   final TextEditingController controler;
-  
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 24.w, right: 27.w),
-      child: TextField(controller: controler,
-        decoration: InputDecoration(
+      child: TextField(
+          style: TextStyle(
+            color: Colors.black,
+          ),
+          controller: controler,
+          decoration: InputDecoration(
             contentPadding:
                 EdgeInsets.only(left: 35.w, top: 23.h, bottom: 23.h),
             filled: true,
@@ -28,8 +31,9 @@ class TextfeildText extends StatelessWidget {
                 fontSize: 15.sp),
             border: OutlineInputBorder(
                 borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(140.r))),
-      ),
+                borderRadius: BorderRadius.circular(140.r)),
+          ),
+        ),
     );
   }
 }

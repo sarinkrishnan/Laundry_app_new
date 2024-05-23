@@ -6,17 +6,22 @@ import 'package:gap/gap.dart';
 import 'package:laundry_bin_app/extract_items/01-splash_page-prototype/01-textfeild_splash_pages.dart';
 import 'package:laundry_bin_app/extract_items/splashpage-back_white_button/splash-back_white_button.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/5-wlcome_back-login.dart';
-import 'package:laundry_bin_app/prototype-screen/2-row-home-page/11-home-page.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController name = TextEditingController();
-    TextEditingController id_number = TextEditingController();
-    TextEditingController password = TextEditingController();
+  State<RegisterPage> createState() => _RegisterPageState();
+}
 
+TextEditingController name = TextEditingController();
+TextEditingController e_mail_phonenumber = TextEditingController();
+TextEditingController password = TextEditingController();
+TextEditingController confirmpassword = TextEditingController();
+
+class _RegisterPageState extends State<RegisterPage> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xff1FACF3),
       body: Stack(children: [
@@ -59,7 +64,7 @@ class RegisterPage extends StatelessWidget {
               ),
               Gap(15.h),
               TextfeildText(
-                controler: id_number,
+                controler: e_mail_phonenumber,
                 text: 'Enter Email ID or Phone Number',
               ),
               Gap(15.h),
@@ -70,7 +75,7 @@ class RegisterPage extends StatelessWidget {
               Gap(15.h),
               TextfeildText(
                 text: 'Confirm password',
-                controler: password,
+                controler: confirmpassword,
               ),
               Gap(15.h),
               Center(
@@ -79,11 +84,11 @@ class RegisterPage extends StatelessWidget {
                     width: 333.w,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => HomePage(),
-                            ));
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) => HomePage(),
+                        //     ));
                       },
                       child: Text(
                         'Register',
@@ -119,7 +124,7 @@ class RegisterPage extends StatelessWidget {
                       '  Log In',
                       style: TextStyle(
                           decoration: TextDecoration.underline,
-                          fontFamily: 'DM_Sans', 
+                          fontFamily: 'DM_Sans',
                           fontSize: 18.sp,
                           fontWeight: FontWeight.w700,
                           color: Color(0xffFFFFFF)),

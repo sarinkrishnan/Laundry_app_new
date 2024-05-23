@@ -44,6 +44,7 @@ dependencies:
   chat_bubbles: ^1.6.0
   image_picker: ^1.1.1
   radio_group_v2: ^3.1.1
+  http: ^1.2.1
 
 dev_dependencies:
   flutter_test:
