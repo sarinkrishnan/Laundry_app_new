@@ -1,31 +1,33 @@
-import 'dart:convert';
-import 'dart:math';
+import "dart:convert";
 
-import 'package:http/http.dart' as http;
-import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/4-register-page.dart';
+import "package:flutter/material.dart";
+import "package:http/http.dart" as http;
+import "package:laundry_bin_app/models/register.dart";
 
-Future<void> putData() async {
-  final url = ' https://laundry-app-backend-mwlf.onrender.com/api/register';
-  var datas = {
-    'name': name.text,
-    'e-mail': e_mail_phonenumber == null? '': e_mail_phonenumber,
-    'password': password.text,
-    'confirmpassword': confirmpassword.text
-  };
-  String jsonBody = json.encode(datas);
+class RegisterPrivider with ChangeNotifier {
+  late Registor _user;
+  Registor get user => _user;
 
-  var response = await http.post(
-    Uri.parse(url),
-    
+  Future<void> RegisterData(
+      String username, String email, String password, int phonenumber) async {
+    final url =
+        Uri.parse('https://laundry-app-backend-mwlf.onrender.com/api/register');
 
-  );
+    final body = json.encode({
+      'username': username,
+      'email': email,
+      'password': password,
+      'phonnenumber': phonenumber
+    });
+    final response = await http
+        .post(url, body: body, headers: {'Content-Type': 'application/json'});
+    final responsedata = jsonDecode(response.body);
 
-  if (response.statusCode == 200) {
-    var jsonResponse = json.decode(response.body);
-    print('Response data: $jsonResponse');
-    log(response.statusCode);
-
-  } else {
-    print('Request failed with status: ${response.statusCode}.');
+    if (response.statusCode == 200) {
+      _user = Registor.fromJson(responsedata['data']);
+      notifyListeners();
+    } else {
+      throw Exception(['message']);
+    }
   }
 }
