@@ -4,7 +4,7 @@ import "package:flutter/material.dart";
 import "package:http/http.dart" as http;
 import "package:laundry_bin_app/models/register.dart";
 
-class RegisterPrivider with ChangeNotifier {
+class RegisterProvider with ChangeNotifier {
   late Registor _user;
   Registor get user => _user;
 
@@ -12,7 +12,7 @@ class RegisterPrivider with ChangeNotifier {
       String username, String email, String password, int phonenumber) async {
     final url =
         Uri.parse('https://laundry-app-backend-mwlf.onrender.com/api/register');
-        
+
     final body = json.encode({
       'username': username,
       'email': email,

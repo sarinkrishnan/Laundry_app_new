@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:laundry_bin_app/controler/register.dart';
 import 'package:laundry_bin_app/extract_items/01-splash_page-prototype/01-textfeild_splash_pages.dart';
 import 'package:laundry_bin_app/extract_items/splashpage-back_white_button/splash-back_white_button.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/5-wlcome_back-login.dart';
+import 'package:laundry_bin_app/prototype-screen/2-row-home-page/11-home-page.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -21,8 +24,6 @@ TextEditingController phoneNumber = TextEditingController();
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
-  late String isername, emaill, passwordd;
-  late int phonenumberr;
 
   @override
   Widget build(BuildContext context) {
@@ -77,9 +78,33 @@ class _RegisterPageState extends State<RegisterPage> {
                 controler: password,
               ),
               Gap(15.h),
-              TextfeildText(
-                text: 'Confirm password',
-                controler: phoneNumber,
+              // TextfeildText(
+              //   text: 'Confirm password',
+              //   controler: phoneNumber,
+              // ),
+              Padding(
+                padding: EdgeInsets.only(left: 24.w, right: 27.w),
+                child: TextFormField(
+                  style: TextStyle(color: Colors.black),
+                  keyboardType: TextInputType.number,
+                  controller: phoneNumber,
+                  decoration: InputDecoration(
+                      fillColor: Color(0xffFFFFFFFF),
+                      filled: true,
+                      labelText: 'Phone Number',
+                      contentPadding: EdgeInsets.only(left: 32.w, top: 45.h),
+                      labelStyle:
+                          TextStyle(color: Color.fromARGB(66, 57, 51, 51)),
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(100.r))),
+                  validator: (value) {
+                    if (!RegExp(r'^[0-9]+$').hasMatch(value!)) {
+                      return 'Please enter a valid phone number';
+                    }
+                    return null;
+                  },
+                ),
               ),
               Gap(15.h),
               Center(
@@ -92,35 +117,39 @@ class _RegisterPageState extends State<RegisterPage> {
                             e_mail.text.isEmpty ||
                             password.text.isEmpty ||
                             phoneNumber.text.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                            content: Text('enter the data'),
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            shape: ContinuousRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            content: Text('enter all data'),
                             backgroundColor: Colors.red,
                           ));
-                        }else{
-                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text('good'),
                             backgroundColor: Color.fromARGB(255, 28, 223, 10),
                           ));
-                        // if (_formKey.currentState!.validate()) {
-                        //   _formKey.currentState!.save();
-                        //   Provider.of<RegisterPrivider>(context, listen: false)
-                        //       .RegisterData(
-                        //           isername, emaill, passwordd, phonenumberr)
-                        //       .then((_) {
-                        //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        //       content: Text('Registration successful!'),
-                        //       backgroundColor: Colors.greenAccent,
-                        //     ));
-                        //     Navigator.push(
-                        //         context,
-                        //         MaterialPageRoute(
-                        //           builder: (context) => HomePage(),
-                        //         ));
-                        //   }).catchError((Error) {
-                        //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        //         content: Text('Registration failed: $Error')));
-                        //   });
-                        // }
+                          if (_formKey.currentState!.validate()) {
+                            _formKey.currentState!.save();
+
+                            Provider.of<RegisterProvider>(context,
+                                    listen: false)
+                                .RegisterData(name.text, e_mail.text,
+                                    password.text, int.parse(phoneNumber.text))
+                                .then((_) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text('Registration successful!'),
+                                backgroundColor: Colors.greenAccent,
+                              ));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HomePage(),
+                                  ));
+                            });
+
+                            
+                          }
                         }
                         // if (_formKey.currentState!.validate()) {
                         //   _formKey.currentState!.save();
