@@ -15,11 +15,15 @@ class RegisterPage extends StatefulWidget {
 }
 
 TextEditingController name = TextEditingController();
-TextEditingController e_mail_phonenumber = TextEditingController();
+TextEditingController e_mail = TextEditingController();
 TextEditingController password = TextEditingController();
-TextEditingController confirmpassword = TextEditingController();
+TextEditingController phoneNumber = TextEditingController();
 
 class _RegisterPageState extends State<RegisterPage> {
+  final _formKey = GlobalKey<FormState>();
+  late String isername, emaill, passwordd;
+  late int phonenumberr;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +68,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               Gap(15.h),
               TextfeildText(
-                controler: e_mail_phonenumber,
+                controler: e_mail,
                 text: 'Enter Email ID or Phone Number',
               ),
               Gap(15.h),
@@ -75,7 +79,7 @@ class _RegisterPageState extends State<RegisterPage> {
               Gap(15.h),
               TextfeildText(
                 text: 'Confirm password',
-                controler: confirmpassword,
+                controler: phoneNumber,
               ),
               Gap(15.h),
               Center(
@@ -84,11 +88,60 @@ class _RegisterPageState extends State<RegisterPage> {
                     width: 333.w,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //       builder: (context) => HomePage(),
+                        if (name.text.isEmpty ||
+                            e_mail.text.isEmpty ||
+                            password.text.isEmpty ||
+                            phoneNumber.text.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                            content: Text('enter the data'),
+                            backgroundColor: Colors.red,
+                          ));
+                        }else{
+                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text('good'),
+                            backgroundColor: Color.fromARGB(255, 28, 223, 10),
+                          ));
+                        // if (_formKey.currentState!.validate()) {
+                        //   _formKey.currentState!.save();
+                        //   Provider.of<RegisterPrivider>(context, listen: false)
+                        //       .RegisterData(
+                        //           isername, emaill, passwordd, phonenumberr)
+                        //       .then((_) {
+                        //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        //       content: Text('Registration successful!'),
+                        //       backgroundColor: Colors.greenAccent,
                         //     ));
+                        //     Navigator.push(
+                        //         context,
+                        //         MaterialPageRoute(
+                        //           builder: (context) => HomePage(),
+                        //         ));
+                        //   }).catchError((Error) {
+                        //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        //         content: Text('Registration failed: $Error')));
+                        //   });
+                        // }
+                        }
+                        // if (_formKey.currentState!.validate()) {
+                        //   _formKey.currentState!.save();
+                        //   Provider.of<RegisterPrivider>(context, listen: false)
+                        //       .RegisterData(
+                        //           isername, emaill, passwordd, phonenumberr)
+                        //       .then((_) {
+                        //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        //       content: Text('Registration successful!'),
+                        //       backgroundColor: Colors.greenAccent,
+                        //     ));
+                        //     Navigator.push(
+                        //         context,
+                        //         MaterialPageRoute(
+                        //           builder: (context) => HomePage(),
+                        //         ));
+                        //   }).catchError((Error) {
+                        //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        //         content: Text('Registration failed: $Error')));
+                        //   });
+                        // }
                       },
                       child: Text(
                         'Register',

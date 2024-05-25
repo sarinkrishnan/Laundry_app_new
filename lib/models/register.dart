@@ -1,24 +1,28 @@
 class Registor {
-  String? userName;
-  String? email;
-  String? password;
-  String? phoneNumber;
+  final String userName;
+  final String email;
+  final String password;
+  final int phoneNumber;
+  final String id;
+  final List<String> address;
 
-  Registor({this.userName, this.email, this.password, this.phoneNumber});
+  Registor({
+    required this.userName,
+    required this.email,
+    required this.password,
+    required this.phoneNumber,
+    required this.id,
+    required this.address,
+  });
 
-  Registor.fromJson(Map<String, dynamic> json) {
-    userName = json['userName'];
-    email = json['email'];
-    password = json['password'];
-    phoneNumber = json['phoneNumber'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userName'] = this.userName;
-    data['email'] = this.email;
-    data['password'] = this.password;
-    data['phoneNumber'] = this.phoneNumber;
-    return data;
+  factory Registor.fromJson(Map<String, dynamic> json) {
+    return Registor(
+      userName: json['userName'],
+      email: json['email'],
+      password: json['password'],
+      phoneNumber: json['phoneNumber'],
+      id: json['_id'],
+      address: List<String>.from(json['address']),
+    );
   }
 }
