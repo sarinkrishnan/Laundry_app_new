@@ -12,7 +12,7 @@ class RegisterPrivider with ChangeNotifier {
       String username, String email, String password, int phonenumber) async {
     final url =
         Uri.parse('https://laundry-app-backend-mwlf.onrender.com/api/register');
-
+        
     final body = json.encode({
       'username': username,
       'email': email,
