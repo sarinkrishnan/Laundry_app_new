@@ -17,7 +17,7 @@ class RegisterProvider with ChangeNotifier {
       'username': username,
       'email': email,
       'password': password,
-      'phonnenumber': phonenumber
+      'phonnenumber': '+91$phonenumber'
     });
     final response = await http
         .post(url, body: body, headers: {'Content-Type': 'application/json'});

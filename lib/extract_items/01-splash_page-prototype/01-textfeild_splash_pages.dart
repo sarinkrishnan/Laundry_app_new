@@ -5,16 +5,19 @@ class TextfeildText extends StatelessWidget {
   const TextfeildText({
     super.key,
     required this.text,
-    required this.controler,
+    required this.controler,required this.validator,
+
   });
   final String text;
   final TextEditingController controler;
+  final String Function(String?) validator;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 24.w, right: 27.w),
-      child: TextField(
+      child: TextFormField(
+        validator: validator,
           style: TextStyle(
             color: Colors.black,
           ),

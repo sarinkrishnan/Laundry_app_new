@@ -20,7 +20,9 @@ class RegisterPage extends StatefulWidget {
 TextEditingController name = TextEditingController();
 TextEditingController e_mail = TextEditingController();
 TextEditingController password = TextEditingController();
-TextEditingController phoneNumber = TextEditingController();
+// TextEditingController phoneNumber = TextEditingController();
+
+int? phoneNumber;
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
@@ -66,28 +68,46 @@ class _RegisterPageState extends State<RegisterPage> {
               TextfeildText(
                 text: 'Enter Name',
                 controler: name,
+                validator: (p0) {
+                  if (name.text.isEmpty) {
+                    return 'Please enter your name';
+                  } else {
+                    throw '';
+                  }
+                },
               ),
               Gap(15.h),
               TextfeildText(
                 controler: e_mail,
                 text: 'Enter Email ID or Phone Number',
+                validator: (p0) {
+                  if (e_mail.text.isEmpty) {
+                    return 'Enter Email ID or Phone Number';
+                  } else {
+                    throw '';
+                  }
+                },
               ),
               Gap(15.h),
               TextfeildText(
                 text: 'Enter your password',
                 controler: password,
+                validator: (p0) {
+                  if (password.text.isEmpty) {
+                    return "please enter the password";
+                  } else {
+                    throw "";
+                  }
+                },
               ),
               Gap(15.h),
-              // TextfeildText(
-              //   text: 'Confirm password',
-              //   controler: phoneNumber,
-              // ),
               Padding(
                 padding: EdgeInsets.only(left: 24.w, right: 27.w),
                 child: TextFormField(
                   style: TextStyle(color: Colors.black),
                   keyboardType: TextInputType.number,
-                  controller: phoneNumber,
+                  // controller: phoneNumber,
+                  onSaved: (value) => phoneNumber = int.parse(value!),
                   decoration: InputDecoration(
                       fillColor: Color(0xffFFFFFFFF),
                       filled: true,
@@ -113,64 +133,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     width: 333.w,
                     child: ElevatedButton(
                       onPressed: () {
-                        if (name.text.isEmpty ||
-                            e_mail.text.isEmpty ||
-                            password.text.isEmpty ||
-                            phoneNumber.text.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            shape: ContinuousRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            content: Text('enter all data'),
-                            backgroundColor: Colors.red,
-                          ));
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text('good'),
-                            backgroundColor: Color.fromARGB(255, 28, 223, 10),
-                          ));
-                          if (_formKey.currentState!.validate()) {
-                            _formKey.currentState!.save();
-
-                            Provider.of<RegisterProvider>(context,
-                                    listen: false)
-                                .RegisterData(name.text, e_mail.text,
-                                    password.text, int.parse(phoneNumber.text))
-                                .then((_) {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                content: Text('Registration successful!'),
-                                backgroundColor: Colors.greenAccent,
-                              ));
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => HomePage(),
-                                  ));
-                            });
-
-                            
-                          }
-                        }
-                        // if (_formKey.currentState!.validate()) {
-                        //   _formKey.currentState!.save();
-                        //   Provider.of<RegisterPrivider>(context, listen: false)
-                        //       .RegisterData(
-                        //           isername, emaill, passwordd, phonenumberr)
-                        //       .then((_) {
-                        //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        //       content: Text('Registration successful!'),
-                        //       backgroundColor: Colors.greenAccent,
-                        //     ));
-                        //     Navigator.push(
-                        //         context,
-                        //         MaterialPageRoute(
-                        //           builder: (context) => HomePage(),
-                        //         ));
-                        //   }).catchError((Error) {
-                        //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        //         content: Text('Registration failed: $Error')));
-                        //   });
-                        // }
                       },
                       child: Text(
                         'Register',
