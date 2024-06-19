@@ -8,7 +8,7 @@ class RegisterProvider with ChangeNotifier {
   late Registor _user;
   Registor get user => _user;
 
-  Future<void> RegisterData(
+  Future<void> registerData(
       String username, String email, String password, int phonenumber) async {
     final url =
         Uri.parse('https://laundry-app-backend-mwlf.onrender.com/api/register');
@@ -21,13 +21,17 @@ class RegisterProvider with ChangeNotifier {
     });
     final response = await http
         .post(url, body: body, headers: {'Content-Type': 'application/json'});
-    final responsedata = jsonDecode(response.body);
-
+   
+  final responsedata= json.decode(response.body);
+   
     if (response.statusCode == 200) {
       _user = Registor.fromJson(responsedata['data']);
+      print('success');
       notifyListeners();
     } else {
-      throw Exception(['message']);
+      print('failed');
+
+      throw Exception([responsedata['message']]);
     }
   }
 }

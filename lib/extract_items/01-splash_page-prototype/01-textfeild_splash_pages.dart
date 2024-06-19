@@ -5,28 +5,28 @@ class TextfeildText extends StatelessWidget {
   const TextfeildText({
     super.key,
     required this.text,
-    //  this.controler,
+    required this.controler,
     this.validator,
     this.onSaveddata,
-    this.type,
+    
   });
   final String text;
-  // /final TextEditingController? controler;
+  final TextEditingController? controler;
   final String Function(String?)? validator;
   final void Function(String?)? onSaveddata;
-  final TextInputType? type;
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 24.w, right: 27.w),
       child: TextFormField(
-        keyboardType: type,
+       
         validator: validator,
         style: TextStyle(
           color: Colors.black,
         ),
-        onSaved: (v) => onSaveddata,
-        // controller: controler,
+        // onSaved: (v) => onSaveddata,
+        controller: controler,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.only(left: 35.w, top: 23.h, bottom: 23.h),
           filled: true,
