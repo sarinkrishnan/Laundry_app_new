@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,19 +10,14 @@ import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/5-wlcome_back
 import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
-
   @override
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController name = TextEditingController();
-  late TextEditingController email = TextEditingController();
-  late TextEditingController phoneNumber = TextEditingController();
-  final TextEditingController password = TextEditingController();
-
+  late String name, email, password;
+  late int phoneNumber;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +84,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         }
                         return null;
                       },
-                      controller: name,
+                      onSaved: (value) => name = value!,
                     ),
                   ),
                 ),
@@ -121,7 +115,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         }
                         return null;
                       },
-                      controller: email,
+                      onSaved: (value) => email = value!,
                     ),
                   ),
                 ),
@@ -130,34 +124,34 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 24.w, right: 27.w),
                     child: TextFormField(
-                      style: TextStyle(color: Colors.black),
-                      decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Color(0xffFFFFFF),
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.circular(140.r)),
-                          contentPadding: EdgeInsets.only(
-                              left: 35.w, top: 24.h, bottom: 24.h),
-                          label: Text(
-                            'Enter your phonenumber',
-                            style: TextStyle(
-                                color: Color.fromARGB(108, 131, 145, 161),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.sp),
-                          )),
-                      validator: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            value.length <= 10) {
-                          return 'Please enter your phonenumber';
-                        }
-                        return null;
-                      },
-                      controller: phoneNumber,
-                      obscureText: true,
-                      keyboardType: TextInputType.number,
-                    ),
+                        style: TextStyle(color: Colors.black),
+                        decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xffFFFFFF),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(140.r)),
+                            contentPadding: EdgeInsets.only(
+                                left: 35.w, top: 24.h, bottom: 24.h),
+                            label: Text(
+                              'Enter your phonenumber',
+                              style: TextStyle(
+                                  color: Color.fromARGB(108, 131, 145, 161),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.sp),
+                            )),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your phone number';
+                          }
+                          if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                            return 'Please enter a valid phone number';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) => phoneNumber = int.parse(value!),
+                        // obscureText: true,
+                        keyboardType: TextInputType.number),
                   ),
                 ),
                 Gap(15.h),
@@ -187,7 +181,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         }
                         return null;
                       },
-                      controller: password,
+                      onSaved: (value) => password = value!,
                     ),
                   ),
                 ),
@@ -198,60 +192,61 @@ class _RegisterPageState extends State<RegisterPage> {
                       width: 333.w,
                       child: ElevatedButton(
                         onPressed: () {
+                          //   if (_formKey.currentState!.validate()) {
+                          //     _formKey.currentState!.save();
+                          //     Provider.of<RegisterProvider>(context,
+                          //             listen: false)
+                          //         .registerData(name.text, email.text,
+                          //             password.text, int.parse(phoneNumber.text));
+                          //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          //       shape: ContinuousRectangleBorder(
+                          //           borderRadius: BorderRadius.circular(10)),
+                          //       content: Text(
+                          //         'Registration successful!',
+                          //       ),
+                          //       backgroundColor:
+                          //           const Color.fromARGB(255, 54, 244, 67),
+                          //       padding: EdgeInsets.only(
+                          //           left: 150, top: 15, bottom: 15),
+                          //     ));
+                          //   } else {
+                          //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          //       shape: ContinuousRectangleBorder(
+                          //           borderRadius: BorderRadius.circular(10)),
+                          //       content: Text(
+                          //         'Registration failed',
+                          //       ),
+                          //       backgroundColor: Colors.red,
+                          //       padding: EdgeInsets.only(
+                          //           left: 150, top: 15, bottom: 15),
+                          //     ));
+                          //   }
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
                             Provider.of<RegisterProvider>(context,
                                     listen: false)
-                                .registerData(name.text, email.text,
-                                    password.text, int.parse(phoneNumber.text));
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              shape: ContinuousRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              content: Text(
-                                'Registration successful!',
-                              ),
-                              backgroundColor:
-                                  const Color.fromARGB(255, 54, 244, 67),
-                              padding: EdgeInsets.only(
-                                  left: 150, top: 15, bottom: 15),
-                            ));
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              shape: ContinuousRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              content: Text(
-                                'Registration failed',
-                              ),
-                              backgroundColor: Colors.red,
-                              padding: EdgeInsets.only(
-                                  left: 150, top: 15, bottom: 15),
-                            ));
+                                .registerData(
+                                    name, email, password, phoneNumber)
+                                .then(
+                              (_) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      backgroundColor: Colors.greenAccent,
+                                      content:
+                                          Text('Registration successful!')),
+                                );
+                              },
+                            ).catchError((error) {
+                            
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text(
+                                  'Registration failed: $error',
+                                ),
+                                backgroundColor: Colors.red,
+                              ));
+                            });
                           }
-                          //   if (_formKey.currentState!.validate()) {
-                          //     // _formKey.currentState!.save();
-                          //     Provider.of<RegisterProvider>(context,
-                          //             listen: false)
-                          //         .registerData(name.text, email.text,
-                          //             password.text, int.parse(phonenumber.text))
-                          //         .then(
-                          //       (_) {
-                          //         ScaffoldMessenger.of(context).showSnackBar(
-                          //           SnackBar(
-                          //               backgroundColor: Colors.greenAccent,
-                          //               content:
-                          //                   Text('Registration successful!')),
-                          //         );
-                          //       },
-                          //     ).catchError((error) {
-                          //       print(error);
-                          //       ScaffoldMessenger.of(context)
-                          //           .showSnackBar(SnackBar(
-
-                          //         content: Text('Registration failed: ${error}', ),
-                          //         backgroundColor: Colors.red,
-                          //       ));
-                          //     });
-                          //   }
                         },
                         child: Text(
                           'Register',
