@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,7 +6,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:laundry_bin_app/controler/register.dart';
-import 'package:laundry_bin_app/extract_items/01-splash_page-prototype/01-textfeild_splash_pages.dart';
 import 'package:laundry_bin_app/extract_items/splashpage-back_white_button/splash-back_white_button.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/5-wlcome_back-login.dart';
 import 'package:provider/provider.dart';
@@ -21,8 +21,8 @@ class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController name = TextEditingController();
   late TextEditingController email = TextEditingController();
-  late TextEditingController password = TextEditingController();
-  final TextEditingController phonenumber = TextEditingController();
+  late TextEditingController phoneNumber = TextEditingController();
+  final TextEditingController password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -64,53 +64,132 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 Gap(90.h),
-                TextfeildText(
-                  text: 'Enter Name',
-                  // onSaveddata: (p0) => name = p0!,
-                  controler: name,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your name';
-                    }
-                    return '';
-                  },
+                Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 24.w, right: 27.w),
+                    child: TextFormField(
+                      style: TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xffFFFFFF),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(140.r)),
+                          contentPadding: EdgeInsets.only(
+                              left: 35.w, top: 24.h, bottom: 24.h),
+                          label: Text(
+                            'Enter Name',
+                            style: TextStyle(
+                                color: Color.fromARGB(108, 131, 145, 161),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15.sp),
+                          )),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your username';
+                        }
+                        return null;
+                      },
+                      controller: name,
+                    ),
+                  ),
                 ),
                 Gap(15.h),
-                TextfeildText(
-                  controler: email,
-                  // onSaveddata: (p0) => e_mail = p0!,
-                  text: 'Enter Email ID or Phone Number',
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Enter the email';
-                    }
-                    return '';
-                  },
+                Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 24.w, right: 27.w),
+                    child: TextFormField(
+                      style: TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xffFFFFFF),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(140.r)),
+                          contentPadding: EdgeInsets.only(
+                              left: 35.w, top: 24.h, bottom: 24.h),
+                          label: Text(
+                            'Enter Email ID ',
+                            style: TextStyle(
+                                color: Color.fromARGB(108, 131, 145, 161),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15.sp),
+                          )),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your Email';
+                        }
+                        return null;
+                      },
+                      controller: email,
+                    ),
+                  ),
                 ),
                 Gap(15.h),
-                TextfeildText(
-                  controler: password,
-                  text: 'Enter your password',
-                  // onSaveddata: (p0) => password = p0!,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
-                    }
-                    return '';
-                  },
+                Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 24.w, right: 27.w),
+                    child: TextFormField(
+                      style: TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xffFFFFFF),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(140.r)),
+                          contentPadding: EdgeInsets.only(
+                              left: 35.w, top: 24.h, bottom: 24.h),
+                          label: Text(
+                            'Enter your phonenumber',
+                            style: TextStyle(
+                                color: Color.fromARGB(108, 131, 145, 161),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15.sp),
+                          )),
+                      validator: (value) {
+                        if (value == null ||
+                            value.isEmpty ||
+                            value.length <= 10) {
+                          return 'Please enter your phonenumber';
+                        }
+                        return null;
+                      },
+                      controller: phoneNumber,
+                      obscureText: true,
+                      keyboardType: TextInputType.number,
+                    ),
+                  ),
                 ),
                 Gap(15.h),
-                TextfeildText(
-                  controler: phonenumber,
-
-                  text: 'Phone Number',
-                  // onSaveddata: (p0) => phoneNumber = int.parse(p0!),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your phonenumber';
-                    }
-                    return '';
-                  },
+                Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 24.w, right: 27.w),
+                    child: TextFormField(
+                      style: TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xffFFFFFF),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(140.r)),
+                          contentPadding: EdgeInsets.only(
+                              left: 35.w, top: 24.h, bottom: 24.h),
+                          label: Text(
+                            'enter your password',
+                            style: TextStyle(
+                                color: Color.fromARGB(108, 131, 145, 161),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15.sp),
+                          )),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your password';
+                        }
+                        return null;
+                      },
+                      controller: password,
+                    ),
+                  ),
                 ),
                 Gap(15.h),
                 Center(
@@ -124,7 +203,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             Provider.of<RegisterProvider>(context,
                                     listen: false)
                                 .registerData(name.text, email.text,
-                                    password.text, int.parse(phonenumber.text));
+                                    password.text, int.parse(phoneNumber.text));
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               shape: ContinuousRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)),
