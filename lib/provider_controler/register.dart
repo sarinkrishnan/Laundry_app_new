@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:laundry_bin_app/models/register.dart';
+import 'package:laundry_bin_app/models_class/register.dart';
 
 class UserProvider with ChangeNotifier {
   late Registor _user;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:laundry_bin_app/controler/register.dart';
+import 'package:laundry_bin_app/prototype-screen/2-row-home-page/11-home-page.dart';
+import 'package:laundry_bin_app/provider_controler/register.dart';
 import 'package:laundry_bin_app/extract_items/splashpage-back_white_button/splash-back_white_button.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/5-wlcome_back-login.dart';
-import 'package:laundry_bin_app/prototype-screen/2-row-home-page/11-home-page.dart';
 import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -21,7 +21,8 @@ class _RegisterPageState extends State<RegisterPage> {
     // final post = Provider.of<UserProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: Color(0xff1FACF3),
-      body: Stack(children: [
+      body: Stack(
+        children: [
         Padding(
           padding: EdgeInsets.only(top: 425.h),
           child: Opacity(
@@ -118,6 +119,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Padding(
                   padding: EdgeInsets.only(left: 24.w, right: 27.w),
                   child: TextFormField(
+                    obscureText: true,
                     style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
                         filled: true,
@@ -173,7 +175,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         return null;
                       },
                       onSaved: (value) => phoneNumber = int.parse(value!),
-                      // obscureText: true,
                       keyboardType: TextInputType.number),
                 ),
                 Gap(15.h),
