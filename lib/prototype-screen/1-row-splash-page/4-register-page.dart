@@ -20,6 +20,8 @@ class _RegisterPageState extends State<RegisterPage> {
   late int phoneNumber;
   @override
   Widget build(BuildContext context) {
+     final post= Provider.of<RegisterProvider>(context,
+                                    listen: false);
     return Scaffold(
       backgroundColor: Color(0xff1FACF3),
       body: Stack(children: [
@@ -223,17 +225,16 @@ class _RegisterPageState extends State<RegisterPage> {
                           //   }
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                            Provider.of<RegisterProvider>(context,
-                                    listen: false)
-                                .registerData(
-                                    name, email, password, phoneNumber)
+                           
+                                post.registordata(
+                                    name, email,phoneNumber, password, )
                                 .then(
                               (_) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                       backgroundColor: Colors.greenAccent,
                                       content:
-                                          Text('Registration successful!')),
+                                          Text(post.Message)),
                                 );
                               },
                             ).catchError((error) {
