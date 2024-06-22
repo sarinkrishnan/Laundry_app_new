@@ -18,8 +18,16 @@ class _WelcomebackLoginState extends State<WelcomebackLogin> {
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
 
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getData();
+  //   setState(() {});
+  // }
+
   @override
   Widget build(BuildContext context) {
+    final provide = Provider.of<Loginprovider>(context, listen: false);
     return Scaffold(
       // resizeToAvoidBottomInset: true,
       backgroundColor: Color(0xff1FACF3),
@@ -137,7 +145,7 @@ class _WelcomebackLoginState extends State<WelcomebackLogin> {
                               );
                             } else {
                               _formkey.currentState!.save();
-                              Provider.of<Loginprovider>(context, listen: false)
+                              provide
                                   .loginuser(_email.text, _password.text)
                                   .then((_) {
                                 ScaffoldMessenger.of(context).showSnackBar(
@@ -153,6 +161,7 @@ class _WelcomebackLoginState extends State<WelcomebackLogin> {
                                         Color.fromARGB(255, 13, 248, 5),
                                   ),
                                 );
+                            
                               }).catchError((e) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
@@ -174,27 +183,6 @@ class _WelcomebackLoginState extends State<WelcomebackLogin> {
                             //     MaterialPageRoute(
                             //       builder: (context) => EnterOtp(),
                             //     ));
-
-                            // if () {
-                            //   _formkey.currentState!.save();
-                            //   Provider.of<Loginprovider>(context, listen: false)
-                            //       .loginuser(_email.text, _password.text)
-                            //       .then((_) {
-                            //     ScaffoldMessenger.of(context).showSnackBar(
-                            //       SnackBar(
-                            //         content: Text('login successful!'),
-                            //         backgroundColor: Colors.green,
-                            //       ),
-                            //     );
-                            //   }).catchError((e) {
-                            //     ScaffoldMessenger.of(context).showSnackBar(
-                            //       SnackBar(
-                            //         content: Text('login failed: $e'),
-                            //         backgroundColor: Colors.red,
-                            //       ),
-                            //     );
-                            //   });
-                            // }
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xffFFFFFF)),

@@ -3,11 +3,37 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:laundry_bin_app/models_class/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Loginprovider extends ChangeNotifier {
+  String emaildata = '';
+  String passworddata = '';
+
+  savaData(String __email, String __password) async {
+    SharedPreferences data = await SharedPreferences.getInstance();
+    data.setString("email", __email);
+    data.setString("password", __password);
+    print(__email);
+    print(__password);
+  }
+
+  getData() async {
+    SharedPreferences data = await SharedPreferences.getInstance();
+    emaildata = data.getString("email") ?? '';
+    passworddata = data.getString("password") ?? '';
+  }
+   
+    deleteData() async {
+          SharedPreferences data = await SharedPreferences.getInstance();
+         await  data.remove("email");
+         await data.remove("password");
+
+    }
+
   late LoginModel _user;
   LoginModel get user => _user;
   Future<void> loginuser(String email, String password) async {
+    
     final uri = 'https://laundry-app-backend-mwlf.onrender.com/api/login';
     final url = Uri.parse(uri);
     final body = json.encode({"email": email, "password": password});
@@ -25,7 +51,7 @@ class Loginprovider extends ChangeNotifier {
       } else {
         print(response.statusCode);
         throw Exception(response);
-      }   
+      }
     } catch (e) {
       throw Exception(e);
     }

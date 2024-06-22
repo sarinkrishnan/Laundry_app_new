@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:laundry_bin_app/extract_items/26-profile-page/Bottumsheet_two_Container.dart';
@@ -13,12 +11,21 @@ import 'package:laundry_bin_app/prototype-screen/4-row-profile-page/32-privacy_p
 import 'package:laundry_bin_app/prototype-screen/4-row-profile-page/34-history-page.dart';
 import 'package:laundry_bin_app/prototype-screen/4-row-profile-page/35-review-page.dart';
 import 'package:laundry_bin_app/prototype-screen/4-row-profile-page/36-edit_profile-page.dart';
+import 'package:laundry_bin_app/provider_controler/login.dart';
+import 'package:provider/provider.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
   @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  @override
   Widget build(BuildContext context) {
+    final clearprovider = Provider.of<Loginprovider>(context, listen: false);
+
     return Scaffold(
       body: Column(
         children: [
@@ -91,10 +98,14 @@ class ProfilePage extends StatelessWidget {
                                   color: Color(0xff1FACF3)),
                             ),
                             Gap(4.w),
-                            GestureDetector(onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => EditprofilePage(),));
-
-                            },
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => EditprofilePage(),
+                                    ));
+                              },
                               child: Image.asset(
                                 'asset/images/043-edit.png',
                                 height: 13.h,
@@ -285,6 +296,8 @@ class ProfilePage extends StatelessWidget {
                                 ),
                                 Bottumsheet_two_Container(
                                   buttonpress: () {
+                                    clearprovider.deleteData();
+
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
