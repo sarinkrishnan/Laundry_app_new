@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:laundry_bin_app/extract_items/splashpage-back_white_button/splash-back_white_button.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/5-login.dart';
 import 'package:pinput/pinput.dart';
-import 'package:provider/provider.dart';
 
 class EnterOtp extends StatefulWidget {
   @override
@@ -18,7 +16,8 @@ class _EnterOtpState extends State<EnterOtp> {
 
   @override
   Widget build(BuildContext context) {
-    final _otp=Provider.of(context,listen: false);
+    // final providee = Provider.of<otpProvider>(context, listen: false);
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Color(0xff1FACF3),
@@ -75,6 +74,12 @@ class _EnterOtpState extends State<EnterOtp> {
                           decoration: BoxDecoration(
                               color: Color(0xffFFFFFF),
                               borderRadius: BorderRadius.circular(9.r))),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter OTP';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   Gap(17.h),
@@ -109,8 +114,12 @@ class _EnterOtpState extends State<EnterOtp> {
                             //     context,
                             //     MaterialPageRoute(
                             //       builder: (context) => HomePage(),
-                            //     ));
-                           
+                            //     ));44
+
+                            if (_fromkey.currentState!.validate()) {
+                              _fromkey.currentState!.save();
+                              //  providee.getOtp(otp)
+                            }
                           },
                           child: Text(
                             'Next',

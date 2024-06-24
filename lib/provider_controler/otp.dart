@@ -6,21 +6,16 @@ import 'package:http/http.dart' as http;
 import 'package:laundry_bin_app/models_class/otp.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class UserProvider extends ChangeNotifier {
-  Future<void> saveId(String _id) async {
-    SharedPreferences otp = await SharedPreferences.getInstance();
-    otp.setString("id", _id);
-    print(_id);
-  }
+class otpP extends ChangeNotifier {
+  late userOtp _otp;
+  get otp => _otp;
 
-  Future<String> getId() async {
-    SharedPreferences data = await SharedPreferences.getInstance();
-    return data.getString("id") ?? '';
+  getId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('id') ?? '';
   }
 
   get newid => getId();
-  late userOtp _otp;
-  get otp => _otp;
 
   // final id = '66791f05d04fac0c89f4ffac';
 

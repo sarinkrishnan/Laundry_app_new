@@ -30,6 +30,18 @@ class Loginprovider extends ChangeNotifier {
     await data.remove("password");
   }
 
+  Future<void> setId(String _id) async {
+    SharedPreferences id_data = await SharedPreferences.getInstance();
+    id_data.setString("id", _id);
+  }
+
+  Future<String> getId() async {
+    SharedPreferences id_data = await SharedPreferences.getInstance();
+    
+    return id_data.getString("id") ?? '';
+    
+  }
+
   late LoginModel _user;
   LoginModel get user => _user;
   Future<void> loginuser(String email, String password) async {
@@ -45,6 +57,7 @@ class Loginprovider extends ChangeNotifier {
       final responsedata = json.decode(response.body);
       if (response.statusCode == 200) {
         _user = LoginModel.fromJson(responsedata);
+        setId(user.id);
         print(response.statusCode);
         notifyListeners();
       } else {
