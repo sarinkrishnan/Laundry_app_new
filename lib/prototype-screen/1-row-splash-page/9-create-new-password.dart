@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:laundry_bin_app/extract_items/splashpage-back_white_button/splash-back_white_button.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/10-password-changed.dart';
-import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/5-wlcome_back-login.dart';
+import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/5-login.dart';
 
 class CreatenewPassword extends StatelessWidget {
   const CreatenewPassword({super.key});

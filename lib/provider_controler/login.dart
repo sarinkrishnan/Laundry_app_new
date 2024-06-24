@@ -6,10 +6,7 @@ import 'package:laundry_bin_app/models_class/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Loginprovider extends ChangeNotifier {
-  String emaildata = '';
-  String passworddata = '';
-
-  savaData(String __email, String __password) async {
+  Future<void> savaData(String __email, String __password) async {
     SharedPreferences data = await SharedPreferences.getInstance();
     data.setString("email", __email);
     data.setString("password", __password);
@@ -17,23 +14,25 @@ class Loginprovider extends ChangeNotifier {
     print(__password);
   }
 
-  getData() async {
+  Future<String> getEmail() async {
     SharedPreferences data = await SharedPreferences.getInstance();
-    emaildata = data.getString("email") ?? '';
-    passworddata = data.getString("password") ?? '';
+    return data.getString("email") ?? '';
   }
-   
-    deleteData() async {
-          SharedPreferences data = await SharedPreferences.getInstance();
-         await  data.remove("email");
-         await data.remove("password");
 
-    }
+  Future<String> getPassword() async {
+    SharedPreferences data = await SharedPreferences.getInstance();
+    return data.getString("password") ?? '';
+  }
+
+  Future<void> deleteData() async {
+    SharedPreferences data = await SharedPreferences.getInstance();
+    await data.remove("email");
+    await data.remove("password");
+  }
 
   late LoginModel _user;
   LoginModel get user => _user;
   Future<void> loginuser(String email, String password) async {
-    
     final uri = 'https://laundry-app-backend-mwlf.onrender.com/api/login';
     final url = Uri.parse(uri);
     final body = json.encode({"email": email, "password": password});

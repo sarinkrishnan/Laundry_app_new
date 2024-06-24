@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:laundry_bin_app/prototype-screen/2-row-home-page/11-home-page.dart';
 import 'package:laundry_bin_app/provider_controler/register.dart';
 import 'package:laundry_bin_app/extract_items/splashpage-back_white_button/splash-back_white_button.dart';
-import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/5-wlcome_back-login.dart';
+import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/5-login.dart';
 import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {

@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:laundry_bin_app/extract_items/splashpage-back_white_button/splash-back_white_button.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/3-login_&_register.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/4-register-page.dart';
+import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/6-sent-otp.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/7-forget-password.dart';
 import 'package:laundry_bin_app/provider_controler/login.dart';
 import 'package:provider/provider.dart';
@@ -17,13 +18,6 @@ class _WelcomebackLoginState extends State<WelcomebackLogin> {
   final _formkey = GlobalKey<FormState>();
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   getData();
-  //   setState(() {});
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -117,9 +111,6 @@ class _WelcomebackLoginState extends State<WelcomebackLogin> {
                           border: OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.circular(140.r))),
-
-                      // return ' enter your correct password ';
-
                       controller: _password,
                     ),
                   ),
@@ -153,7 +144,7 @@ class _WelcomebackLoginState extends State<WelcomebackLogin> {
                                     content: Text(
                                       'login success',
                                       style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 15,
                                         color: Colors.white,
                                       ),
                                     ),
@@ -161,7 +152,11 @@ class _WelcomebackLoginState extends State<WelcomebackLogin> {
                                         Color.fromARGB(255, 13, 248, 5),
                                   ),
                                 );
-                            
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => EnterOtp(),
+                                    ));
                               }).catchError((e) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(

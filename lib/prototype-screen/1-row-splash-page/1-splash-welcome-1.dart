@@ -21,18 +21,19 @@ class _SplashOneState extends State<SplashOne> {
     super.initState();
     final data = Provider.of<Loginprovider>(context, listen: false);
 
-    Timer(Duration(seconds: 4), () {
-      if (data.getData() != '') {
-        Navigator.push(
+    Timer(Duration(seconds: 5), () async {
+      final String email = await data.getEmail();
+      if (email.isNotEmpty) {
+        Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => HomePage(),
             ));
       } else {
-        Navigator.push(
+        Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const SplashTwo(),
+              builder: (context) => SplashTwo(),
             ));
       }
     });

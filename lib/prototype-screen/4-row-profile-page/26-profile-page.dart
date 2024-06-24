@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:laundry_bin_app/extract_items/26-profile-page/Bottumsheet_two_Container.dart';
-import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/5-wlcome_back-login.dart';
+import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/5-login.dart';
 import 'package:laundry_bin_app/prototype-screen/4-row-profile-page/28-dashboard-page.dart';
 import 'package:laundry_bin_app/prototype-screen/4-row-profile-page/29-address-page.dart';
 import 'package:laundry_bin_app/prototype-screen/4-row-profile-page/30-faq-page.dart';

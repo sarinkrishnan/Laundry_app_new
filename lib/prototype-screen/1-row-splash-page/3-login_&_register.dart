@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/4-register-page.dart';
-import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/5-wlcome_back-login.dart';
+import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/5-login.dart';
 
 class LoginRegister extends StatelessWidget {
   const LoginRegister({super.key});
