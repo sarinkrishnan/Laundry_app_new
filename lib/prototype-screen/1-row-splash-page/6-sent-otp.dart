@@ -123,7 +123,8 @@ class _EnterOtpState extends State<EnterOtp> {
                                 providerr.savaData(
                                     widget.email, widget.password);
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
+                                  SnackBar(   behavior: SnackBarBehavior.floating,
+                                  margin: EdgeInsets.only(bottom: 70.h),
                                     content: Text(
                                       'OTP verified',
                                       style: TextStyle(

@@ -19,6 +19,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     final provide =
         Provider.of<forgetpassswordProvider>(context, listen: false);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Color(0xff1FACF3),
       body: Stack(
         children: [
@@ -77,6 +78,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   Padding(
                     padding: EdgeInsets.only(left: 24.w, right: 27.w),
                     child: TextField(
+                      style: TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                           contentPadding: EdgeInsets.only(
                               left: 35.w, top: 23.h, bottom: 23.h),
@@ -119,8 +121,13 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                 print(reforgetpassword);
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
+                                  behavior: SnackBarBehavior.floating,
+                                  margin: EdgeInsets.only(bottom: 70.h),
+                                  shape: ContinuousRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(30.r)),
                                   content: Text(
-                                    'success',
+                                    'success otp has been sent',
                                     style: TextStyle(fontSize: 15),
                                   ),
                                   backgroundColor: Colors.green,
@@ -151,7 +158,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           ),
                         )),
                   ),
-                  Gap(280.h),
+                  Gap(245.h),
                   Center(
                     child: GestureDetector(
                       onTap: () {
