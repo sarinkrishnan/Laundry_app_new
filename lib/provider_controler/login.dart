@@ -12,6 +12,7 @@ class Loginprovider extends ChangeNotifier {
     data.setString("password", __password);
     print(__email);
     print(__password);
+    // print(getId());
   }
 
   Future<String> getEmail() async {
@@ -31,15 +32,8 @@ class Loginprovider extends ChangeNotifier {
   }
 
   Future<void> setId(String _id) async {
-    SharedPreferences id_data = await SharedPreferences.getInstance();
-    id_data.setString("id", _id);
-  }
-
-  Future<String> getId() async {
-    SharedPreferences id_data = await SharedPreferences.getInstance();
-    
-    return id_data.getString("id") ?? '';
-    
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString("id", _id);
   }
 
   late LoginModel _user;
@@ -50,15 +44,17 @@ class Loginprovider extends ChangeNotifier {
     final body = json.encode({"email": email, "password": password});
     print(email);
     print(password);
-
     try {
       final response = await http
           .post(url, body: body, headers: {'Content-Type': 'application/json'});
       final responsedata = json.decode(response.body);
       if (response.statusCode == 200) {
-        _user = LoginModel.fromJson(responsedata);
-        setId(user.id);
         print(response.statusCode);
+        print(email);
+        _user = LoginModel.fromJson(responsedata);
+        
+        setId(user.id);
+
         notifyListeners();
       } else {
         print(response.statusCode);

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:laundry_bin_app/prototype-screen/2-row-home-page/11-home-page.dart';
 import 'package:laundry_bin_app/provider_controler/register.dart';
 import 'package:laundry_bin_app/extract_items/splashpage-back_white_button/splash-back_white_button.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/5-login.dart';
@@ -21,8 +20,7 @@ class _RegisterPageState extends State<RegisterPage> {
     // final post = Provider.of<UserProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: Color(0xff1FACF3),
-      body: Stack(
-        children: [
+      body: Stack(children: [
         Padding(
           padding: EdgeInsets.only(top: 425.h),
           child: Opacity(
@@ -186,7 +184,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                            Provider.of<UserProvider>(context, listen: false)
+                           
+                            Provider.of<registorProvider>(context,
+                                    listen: false)
                                 .registerUser(
                                     name, email, password, phoneNumber)
                                 .then((_) {
@@ -199,7 +199,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => HomePage(),
+                                    builder: (context) => WelcomebackLogin(),
                                   ));
                               // Maybe navigate to a new screen
                             }).catchError((error) {

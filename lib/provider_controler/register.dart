@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:laundry_bin_app/models_class/register.dart';
 
-class UserProvider with ChangeNotifier {
+class registorProvider with ChangeNotifier {
   late Registor _user;
-
   Registor get user => _user;
+
 
   Future<void> registerUser(
       String userName, String email, String password, int phoneNumber) async {

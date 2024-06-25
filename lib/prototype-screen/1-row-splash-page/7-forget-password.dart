@@ -6,18 +6,21 @@ import 'package:laundry_bin_app/extract_items/splashpage-back_white_button/splas
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/5-login.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/8-otp-verification.dart';
 
-class ForgetPassword extends StatelessWidget {
-  const ForgetPassword({super.key});
+class ForgetPassword extends StatefulWidget {
 
+  @override
+  State<ForgetPassword> createState() => _ForgetPasswordState();
+}
+
+class _ForgetPasswordState extends State<ForgetPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xff1FACF3),
       body: Stack(
         children: [
-          Positioned(
-            top: 429.h,
-            right: 63.w,
+          Padding(
+            padding:  EdgeInsets.only(top: 425.h),
             child: Opacity(
               opacity: 0.3,
               child: Image.asset(

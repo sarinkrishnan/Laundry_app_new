@@ -3,7 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:laundry_bin_app/extract_items/splashpage-back_white_button/splash-back_white_button.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/5-login.dart';
+import 'package:laundry_bin_app/prototype-screen/2-row-home-page/11-home-page.dart';
+import 'package:laundry_bin_app/provider_controler/otp.dart';
 import 'package:pinput/pinput.dart';
+import 'package:provider/provider.dart';
 
 class EnterOtp extends StatefulWidget {
   @override
@@ -16,7 +19,7 @@ class _EnterOtpState extends State<EnterOtp> {
 
   @override
   Widget build(BuildContext context) {
-    // final providee = Provider.of<otpProvider>(context, listen: false);
+    final provideerr = Provider.of<otpProvider>(context, listen: false);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -110,15 +113,41 @@ class _EnterOtpState extends State<EnterOtp> {
                         width: 333.w,
                         child: ElevatedButton(
                           onPressed: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //       builder: (context) => HomePage(),
-                            //     ));44
-
                             if (_fromkey.currentState!.validate()) {
                               _fromkey.currentState!.save();
-                              //  providee.getOtp(otp)
+                              provideerr.getOtp(_otp.text).then((_) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'OTP verified',
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    backgroundColor:
+                                        Color.fromARGB(255, 13, 248, 5),
+                                  ),
+                                );
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HomePage(),
+                                    ));
+                              }).catchError((e) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'verified faild',
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                );
+                              });
                             }
                           },
                           child: Text(

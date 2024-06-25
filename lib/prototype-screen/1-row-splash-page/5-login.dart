@@ -27,9 +27,8 @@ class _WelcomebackLoginState extends State<WelcomebackLogin> {
       backgroundColor: Color(0xff1FACF3),
       body: Stack(
         children: [
-          Positioned(
-            bottom: 0.h,
-            right: 63.w,
+          Padding(
+            padding: EdgeInsets.only(top: 425.h),
             child: Opacity(
               opacity: 0.3,
               child: Image.asset(
@@ -157,6 +156,7 @@ class _WelcomebackLoginState extends State<WelcomebackLogin> {
                                     MaterialPageRoute(
                                       builder: (context) => EnterOtp(),
                                     ));
+                                provide.savaData(_email.text, _password.text);
                               }).catchError((e) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
@@ -173,11 +173,7 @@ class _WelcomebackLoginState extends State<WelcomebackLogin> {
                               });
                             }
 
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //       builder: (context) => EnterOtp(),
-                            //     ));
+                        
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xffFFFFFF)),

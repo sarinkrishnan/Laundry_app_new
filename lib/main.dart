@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laundry_bin_app/provider_controler/login.dart';
+import 'package:laundry_bin_app/provider_controler/otp.dart';
 import 'package:laundry_bin_app/provider_controler/register.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/1-splash-welcome-1.dart';
 import 'package:provider/provider.dart';
@@ -22,11 +23,14 @@ class MyApp extends StatelessWidget {
         return MultiProvider(
           providers: [
             ChangeNotifierProvider(
-              create: (context) => UserProvider(),
+              create: (context) => registorProvider(),
             ),
             ChangeNotifierProvider(
               create: (context) => Loginprovider(),
-            )
+            ),
+             ChangeNotifierProvider(
+              create: (context) => otpProvider(),
+            ),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,

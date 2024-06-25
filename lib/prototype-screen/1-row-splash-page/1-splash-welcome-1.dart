@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -23,7 +22,8 @@ class _SplashOneState extends State<SplashOne> {
 
     Timer(Duration(seconds: 5), () async {
       final String email = await data.getEmail();
-      if (email.isNotEmpty) {
+      final String password = await data.getEmail();
+      if (email.isNotEmpty && password.isNotEmpty) {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
