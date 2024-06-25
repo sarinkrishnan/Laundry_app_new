@@ -9,6 +9,10 @@ import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 
 class EnterOtp extends StatefulWidget {
+  final String email;
+  final String password;
+  EnterOtp({required this.email, required this.password});
+
   @override
   State<EnterOtp> createState() => _EnterOtpState();
 }
@@ -19,7 +23,7 @@ class _EnterOtpState extends State<EnterOtp> {
 
   @override
   Widget build(BuildContext context) {
-    final provideerr = Provider.of<otpProvider>(context, listen: false);
+    final providerr = Provider.of<otpProvider>(context, listen: false);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -115,7 +119,9 @@ class _EnterOtpState extends State<EnterOtp> {
                           onPressed: () {
                             if (_fromkey.currentState!.validate()) {
                               _fromkey.currentState!.save();
-                              provideerr.getOtp(_otp.text).then((_) {
+                              providerr.getOtp(_otp.text).then((_) {
+                                providerr.savaData(
+                                    widget.email, widget.password);
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(

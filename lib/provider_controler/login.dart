@@ -6,31 +6,7 @@ import 'package:laundry_bin_app/models_class/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Loginprovider extends ChangeNotifier {
-  Future<void> savaData(String __email, String __password) async {
-    SharedPreferences data = await SharedPreferences.getInstance();
-    data.setString("email", __email);
-    data.setString("password", __password);
-    print(__email);
-    print(__password);
-    // print(getId());
-  }
-
-  Future<String> getEmail() async {
-    SharedPreferences data = await SharedPreferences.getInstance();
-    return data.getString("email") ?? '';
-  }
-
-  Future<String> getPassword() async {
-    SharedPreferences data = await SharedPreferences.getInstance();
-    return data.getString("password") ?? '';
-  }
-
-  Future<void> deleteData() async {
-    SharedPreferences data = await SharedPreferences.getInstance();
-    await data.remove("email");
-    await data.remove("password");
-  }
-
+  
   Future<void> setId(String _id) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString("id", _id);
@@ -52,7 +28,7 @@ class Loginprovider extends ChangeNotifier {
         print(response.statusCode);
         print(email);
         _user = LoginModel.fromJson(responsedata);
-        
+
         setId(user.id);
 
         notifyListeners();

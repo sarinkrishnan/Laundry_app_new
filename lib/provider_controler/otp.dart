@@ -10,6 +10,30 @@ class otpProvider extends ChangeNotifier {
   late userOtp _otp;
   get otp => _otp;
 
+  Future<void> savaData(String __email, String __password) async {
+    SharedPreferences data = await SharedPreferences.getInstance();
+    data.setString("email", __email);
+    data.setString("password", __password);
+    print(__email);
+    print(__password);
+  }
+
+  Future<void> deleteData() async {
+    SharedPreferences data = await SharedPreferences.getInstance();
+    await data.remove("email");
+    await data.remove("password");
+  }
+
+  Future<String> getEmail() async {
+    SharedPreferences data = await SharedPreferences.getInstance();
+    return data.getString("email") ?? '';
+  }
+
+  Future<String> getPassword() async {
+    SharedPreferences data = await SharedPreferences.getInstance();
+    return data.getString("password") ?? '';
+  }
+
   getId() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     return pref.getString('id') ?? '';
@@ -25,11 +49,11 @@ class otpProvider extends ChangeNotifier {
     print(otp);
     try {
       final response = await http.post(url, body: body, headers: header);
-       print(response.statusCode);
-     
+      print(response.statusCode);
+
       if (response.statusCode == 200) {
         final responsedata = json.decode(response.body);
-       
+
         _otp = userOtp.fromJson(responsedata);
         notifyListeners();
       } else {

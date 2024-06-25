@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/2-splash-wellcome-2.dart';
 import 'package:laundry_bin_app/prototype-screen/2-row-home-page/11-home-page.dart';
-import 'package:laundry_bin_app/provider_controler/login.dart';
+import 'package:laundry_bin_app/provider_controler/otp.dart';
 import 'package:provider/provider.dart';
 
 class SplashOne extends StatefulWidget {
@@ -18,7 +18,7 @@ class _SplashOneState extends State<SplashOne> {
   @override
   void initState() {
     super.initState();
-    final data = Provider.of<Loginprovider>(context, listen: false);
+    final data = Provider.of<otpProvider>(context, listen: false);
 
     Timer(Duration(seconds: 5), () async {
       final String email = await data.getEmail();

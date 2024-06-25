@@ -154,9 +154,9 @@ class _WelcomebackLoginState extends State<WelcomebackLogin> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => EnterOtp(),
+                                      builder: (context) => EnterOtp(email: _email.text,password: _password.text,),
                                     ));
-                                provide.savaData(_email.text, _password.text);
+                                
                               }).catchError((e) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(

@@ -11,7 +11,7 @@ import 'package:laundry_bin_app/prototype-screen/4-row-profile-page/32-privacy_p
 import 'package:laundry_bin_app/prototype-screen/4-row-profile-page/34-history-page.dart';
 import 'package:laundry_bin_app/prototype-screen/4-row-profile-page/35-review-page.dart';
 import 'package:laundry_bin_app/prototype-screen/4-row-profile-page/36-edit_profile-page.dart';
-import 'package:laundry_bin_app/provider_controler/login.dart';
+import 'package:laundry_bin_app/provider_controler/otp.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -24,7 +24,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    final clearprovider = Provider.of<Loginprovider>(context, listen: false);
+    final clearprovider = Provider.of<otpProvider>(context, listen: false);
 
     return Scaffold(
       body: Column(
