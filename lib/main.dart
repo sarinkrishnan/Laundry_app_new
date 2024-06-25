@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:laundry_bin_app/provider_controler/forgetpassword.dart';
 import 'package:laundry_bin_app/provider_controler/login.dart';
 import 'package:laundry_bin_app/provider_controler/otp.dart';
 import 'package:laundry_bin_app/provider_controler/register.dart';
@@ -28,8 +29,11 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider(
               create: (context) => Loginprovider(),
             ),
-             ChangeNotifierProvider(
+            ChangeNotifierProvider(
               create: (context) => otpProvider(),
+            ),
+            ChangeNotifierProvider(
+              create: (context) => forgetpassswordProvider(),
             ),
           ],
           child: MaterialApp(
