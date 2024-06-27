@@ -7,18 +7,22 @@ import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/7-forget-pass
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/9-create-new-password.dart';
 import 'package:pinput/pinput.dart';
 
-class OtpVerification extends StatelessWidget {
+class OtpVerification extends StatefulWidget {
   const OtpVerification({super.key});
 
+  @override
+  State<OtpVerification> createState() => _OtpVerificationState();
+}
+
+class _OtpVerificationState extends State<OtpVerification> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xff1FACF3),
       body: Stack(
         children: [
-          Positioned(
-            top: 429.h,
-            right: 63.w,
+          Padding(
+            padding:  EdgeInsets.only(top: 425.h),
             child: Opacity(
               opacity: 0.3,
               child: Image.asset(
@@ -102,7 +106,7 @@ class OtpVerification extends StatelessWidget {
                         ),
                       )),
                 ),
-                Gap(275.h),
+                Gap(245.h),
                 Center(
                   child: RichText(
                     text: TextSpan(

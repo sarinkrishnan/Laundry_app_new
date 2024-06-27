@@ -121,18 +121,35 @@ class _WelcomebackLoginState extends State<WelcomebackLogin> {
                         child: ElevatedButton(
                           onPressed: () {
                             if (_email.text.isEmpty || _password.text.isEmpty) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'please fill the columns ! ',
-                                    style: TextStyle(
-                                      color: Colors.white,
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    behavior: SnackBarBehavior.floating,
+                                    margin: EdgeInsets.only(
+                                        bottom: 62.h, left: 30.w, right: 30.w),
+                                    content: Container(
+                                      height: 15.h,
+                                      width: 100.w,
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                              Icons.edit,
+                                            color: Colors.white,
+                                          ),
+                                          Gap(8.w),
+                                          Text(
+                                            'please fill the columns ! ',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
+                                    backgroundColor:
+                                        Color.fromARGB(255, 193, 1, 1),
                                   ),
-                                  backgroundColor:
-                                      Color.fromARGB(255, 193, 1, 1),
-                                ),
-                              );
+                                );
+                       
                             } else {
                               _formkey.currentState!.save();
                               provide
@@ -140,12 +157,24 @@ class _WelcomebackLoginState extends State<WelcomebackLogin> {
                                   .then((_) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text(
-                                      'login success',
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        color: Colors.white,
-                                      ),
+                                    behavior: SnackBarBehavior.floating,
+                                    margin: EdgeInsets.only(
+                                        bottom: 62.h, left: 30.w, right: 30.w),
+                                    content: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.check_circle,
+                                          size: 15.sp,
+                                          color: Colors.white,
+                                        ),Gap(10.w),
+                                        Text(
+                                          'login success',
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                     backgroundColor:
                                         Color.fromARGB(255, 13, 248, 5),
@@ -156,14 +185,30 @@ class _WelcomebackLoginState extends State<WelcomebackLogin> {
                                     MaterialPageRoute(
                                       builder: (context) => EnterOtp(email: _email.text,password: _password.text,),
                                     ));
-                                
                               }).catchError((e) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text(
-                                      'username or password in correct !  ',
-                                      style: TextStyle(
-                                        color: Colors.white,
+                                    behavior: SnackBarBehavior.floating,
+                                    margin: EdgeInsets.only(
+                                        bottom: 62.h, left: 30.w, right: 30.w),
+                                    content: Container(
+                                      height: 15.h,
+                                      width: 100.w,
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.error_outline,
+                                            size: 15.sp,
+                                            color: Colors.white,
+                                          ),
+                                          Gap(8.w),
+                                          Text(
+                                            'username or password in correct !  ',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                     backgroundColor:
@@ -172,8 +217,6 @@ class _WelcomebackLoginState extends State<WelcomebackLogin> {
                                 );
                               });
                             }
-
-                        
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xffFFFFFF)),

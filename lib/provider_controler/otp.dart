@@ -10,7 +10,7 @@ class otpProvider extends ChangeNotifier {
   late userOtp _otp;
   get otp => _otp;
 
-  Future<void> savaData(String __email, String __password) async {
+  Future<void>        savaData(String __email, String __password) async {
     SharedPreferences data = await SharedPreferences.getInstance();
     data.setString("email", __email);
     data.setString("password", __password);

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:laundry_bin_app/extract_items/splashpage-back_white_button/splash-back_white_button.dart';
 import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/5-login.dart';
+import 'package:laundry_bin_app/prototype-screen/1-row-splash-page/8-otp-verification.dart';
 import 'package:laundry_bin_app/provider_controler/forgetpassword.dart';
 import 'package:provider/provider.dart';
 
@@ -102,49 +103,95 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         width: 333.w,
                         child: ElevatedButton(
                           onPressed: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //       builder: (context) => OtpVerification(),
-                            //     ));
                             if (reforgetpassword.text.isEmpty) {
-                              Text(
-                                'enter the your email_id',
-                                style: TextStyle(
-                                    color: Colors.red, fontSize: 15.sp),
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  behavior: SnackBarBehavior.floating,
+                                  margin: EdgeInsets.only(
+                                      bottom: 60.h, right: 30.w, left: 30.w),
+                                  content: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.edit,
+                                        color: Colors.white,
+                                      ),
+                                      Gap(10.w),
+                                      Text(
+                                        'please enter the email id ',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  backgroundColor:
+                                      Color.fromARGB(255, 193, 1, 1),
+                                ),
                               );
                             } else {
                               _formkay.currentState!.save();
                               provide
                                   .getForgetpassword(reforgetpassword.text)
-                                  .then((_) {
+                                  .then((_) async {
                                 print(reforgetpassword);
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  behavior: SnackBarBehavior.floating,
-                                  margin: EdgeInsets.only(bottom: 70.h),
-                                  shape: ContinuousRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(30.r)),
-                                  content: Text(
-                                    'success otp has been sent',
-                                    style: TextStyle(fontSize: 15),
-                                  ),
-                                  backgroundColor: Colors.green,
-                                ));
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        backgroundColor: Colors.green,
+                                        behavior: SnackBarBehavior.floating,
+                                        margin: EdgeInsets.only(
+                                            bottom: 62.h,
+                                            left: 30.w,
+                                            right: 30.w),
+                                        content: Container(
+                                          height: 15.h,
+                                          width: 100.w,
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                Icons.verified_rounded,
+                                                color: Colors.white,
+                                              ),
+                                              Gap(10.w),
+                                              Text(
+                                                'success otp has been sent',
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )));
+
+                                await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => OtpVerification(),
+                                    ));
                               }).catchError((e) {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'username or password in correct !  ',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    backgroundColor:
-                                        Color.fromARGB(255, 193, 1, 1),
-                                  ),
-                                );
+                                    SnackBar(
+                                        backgroundColor: Colors.red,
+                                        behavior: SnackBarBehavior.floating,
+                                        margin: EdgeInsets.only(
+                                            bottom: 62.h,
+                                            left: 30.w,
+                                            right: 30.w),
+                                        content: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.error_outline,
+                                              size: 15.sp,
+                                              color: Colors.white,
+                                            ),
+                                            Gap(10.w),
+                                            Text(
+                                              'username is incorrect   ',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ],
+                                        )));
                               });
                             }
                           },

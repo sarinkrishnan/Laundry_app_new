@@ -184,7 +184,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                           
+
                             Provider.of<registorProvider>(context,
                                     listen: false)
                                 .registerUser(
@@ -192,7 +192,15 @@ class _RegisterPageState extends State<RegisterPage> {
                                 .then((_) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text('Registration successful!'),
+                                  behavior: SnackBarBehavior.floating,
+                                  margin: EdgeInsets.only(bottom: 15.h),
+                                  content: Row(
+                                    children: [
+                                      Icon(Icons.how_to_reg),
+                                      Gap(15.w),
+                                      Text('Registration successful!'),
+                                    ],
+                                  ),
                                   backgroundColor: Colors.green,
                                 ),
                               );

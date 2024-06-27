@@ -2,14 +2,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:laundry_bin_app/extract_items/6-home-page/6-iron_box.dart';
-import 'package:laundry_bin_app/extract_items/6-home-page/6-washing_machine.dart';
-import 'package:laundry_bin_app/extract_items/6-home-page/6-wash&iron.dart';
-import 'package:laundry_bin_app/extract_items/6-home-page/6-shirt.dart';
-import 'package:laundry_bin_app/prototype-screen/2-row-home-page/12-washing-page.dart';
+
 import 'package:laundry_bin_app/prototype-screen/3-row-calender-page/21-order-page.dart';
 import 'package:laundry_bin_app/prototype-screen/3-row-calender-page/25-notifications-page.dart';
 import 'package:laundry_bin_app/prototype-screen/4-row-profile-page/26-profile-page.dart';
+import 'package:laundry_bin_app/provider_controler/homepage.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,6 +22,8 @@ class _HomePageState extends State<HomePage> {
   int mycountindex = 0;
   @override
   Widget build(BuildContext context) {
+    final xoxo = Provider.of<HomepageProvider>(context, listen: false);
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBody: true,
@@ -207,22 +207,27 @@ class _HomePageState extends State<HomePage> {
               children: [
                 for (int i = 0; i < 3; i++)
                   mycountindex == i
-                      ? SizedBox(width: 20.w,
-                        child: Container(
-                            height: 8.h,
-                           // width: 0.w,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle, color: Colors.blue,)),
-                      )
-                      :  SizedBox(width: 20,
-                        child: Container(
-                            height: 7.h,
-                           // width: 7.w,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(width: 2.w,color: Color(0xff6E97AE)),
-                            )),
-                      )
+                      ? SizedBox(
+                          width: 20.w,
+                          child: Container(
+                              height: 8.h,
+                              // width: 0.w,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.blue,
+                              )),
+                        )
+                      : SizedBox(
+                          width: 20,
+                          child: Container(
+                              height: 7.h,
+                              // width: 7.w,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                    width: 2.w, color: Color(0xff6E97AE)),
+                              )),
+                        )
               ],
             ),
             Gap(15.h),
@@ -334,31 +339,77 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 35.w, top: 17.h),
-              child: Row(
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => WashIng(),
-                            ));
-                      },
-                      child: WasingMachine()),
-                  Gap(21.w),
-                  IronBox(),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 35.w, top: 15.24.h),
-              child: Row(
-                children: [WashIron(), Gap(21.w), DryShirt()],
-              ),
-            ),
-            Gap(145.h)
+            Gap(12.h),
+            Consumer<HomepageProvider>(
+              builder: (context, ok, op) {
+                if (xoxo.catlist.isEmpty) {
+                  xoxo.getData();
+                  return CircularProgressIndicator();
+                } else {
+                  return GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2),
+                    itemCount: xoxo.catlist.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        height: 145.h,
+                        width: 145.w,
+                        
+                        decoration: BoxDecoration(
+                            color: Color(0xffFFFFFF),
+                            borderRadius: BorderRadius.circular(30.r)),
+                        child: Column(
+                          children: [
+                            Gap(25.h),
+                            Image.asset(
+                              // 'asset/images/11-frame-shirt.png',
+                             xoxo.catlist[index].image,
+                              height: 64.02.h,
+                              width: 61.57.w,
+                            ),
+                            Gap(16.h),
+                            Text(
+                              '\$299',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 22.sp,
+                                  fontFamily: 'DM_Sans',
+                                  color: Color(0xff6E97AE)),
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                }
+              },
+            )
+
+            // Padding(
+            //   padding: EdgeInsets.only(left: 35.w, top: 17.h),
+            //   child: Row(
+            //     children: [
+            //       GestureDetector(
+            //           onTap: () {
+            //             Navigator.push(
+            //                 context,
+            //                 MaterialPageRoute(
+            //                   builder: (context) => WashIng(),
+            //                 ));
+            //           },
+            //           child: WasingMachine()),
+            //       Gap(21.w),
+            //       IronBox(),
+            //     ],
+            //   ),
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(left: 35.w, top: 15.24.h),
+            //   child: Row(
+            //     children: [WashIron(), Gap(21.w), DryShirt()],
+            //   ),
+            // ),
+            // Gap(145.h)
           ],
         ),
       ),

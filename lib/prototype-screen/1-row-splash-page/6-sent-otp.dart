@@ -119,7 +119,7 @@ class _EnterOtpState extends State<EnterOtp> {
                           onPressed: () {
                             if (_fromkey.currentState!.validate()) {
                               _fromkey.currentState!.save();
-                              providerr.getOtp(_otp.text).then((_) {
+                              providerr.getOtp(_otp.text).then((_)async {
                                 providerr.savaData(
                                     widget.email, widget.password);
                                 ScaffoldMessenger.of(context).showSnackBar(
@@ -136,7 +136,7 @@ class _EnterOtpState extends State<EnterOtp> {
                                         Color.fromARGB(255, 13, 248, 5),
                                   ),
                                 );
-                                Navigator.push(
+                               await Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => HomePage(),
