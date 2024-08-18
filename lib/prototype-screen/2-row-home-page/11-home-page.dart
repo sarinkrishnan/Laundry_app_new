@@ -181,26 +181,28 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            Center(
-              child: CarouselSlider(
-                  items: [
-                    for (int i = 0; i < 3; i++)
-                      Image.asset(
-                        pic,
-                        //height: 100.h,
-                        width: 328.w,
-                      ),
-                  ],
-                  options: CarouselOptions(
-                    viewportFraction: 1,
-                    initialPage: 0,
-                    autoPlay: true,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        mycountindex = index;
-                      });
-                    },
-                  )),
+            Expanded(
+              child: Center(
+                child: CarouselSlider(
+                    items: [
+                      for (int i = 0; i < 3; i++)
+                        Image.asset(
+                          pic,
+                          //height: 100.h,
+                          width: 328.w,
+                        ),
+                    ],
+                    options: CarouselOptions(
+                      viewportFraction: 1,
+                      initialPage: 0,
+                      autoPlay: true,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          mycountindex = index;
+                        });
+                      },
+                    )),
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -348,13 +350,16 @@ class _HomePageState extends State<HomePage> {
                 } else {
                   return GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2),
+                        crossAxisCount: 2,
+                        childAspectRatio: 9,
+                        mainAxisSpacing: 11,
+                        crossAxisSpacing: 12,
+                        mainAxisExtent: 6),
                     itemCount: xoxo.catlist.length,
                     itemBuilder: (context, index) {
                       return Container(
                         height: 145.h,
                         width: 145.w,
-                        
                         decoration: BoxDecoration(
                             color: Color(0xffFFFFFF),
                             borderRadius: BorderRadius.circular(30.r)),
@@ -363,13 +368,14 @@ class _HomePageState extends State<HomePage> {
                             Gap(25.h),
                             Image.asset(
                               // 'asset/images/11-frame-shirt.png',
-                             xoxo.catlist[index].image,
+                              xoxo.catlist[index].image,
                               height: 64.02.h,
                               width: 61.57.w,
                             ),
                             Gap(16.h),
                             Text(
-                              '\$299',
+                              // '\$299',
+                              xoxo.catlist[index].name,
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 22.sp,

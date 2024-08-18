@@ -6,7 +6,6 @@ import 'package:laundry_bin_app/models_class/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Loginprovider extends ChangeNotifier {
-  
   Future<void> setId(String _id) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString("id", _id);
